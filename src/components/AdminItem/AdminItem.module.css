@@ -1,0 +1,16 @@
+.id {
+	width: 50px;
+}
+
+.name,
+.translit {
+	width: 200px;
+}
+
+.type {
+	width: 150px;
+}
+
+.description {
+	width: 400px;
+}

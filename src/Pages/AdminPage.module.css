@@ -1,0 +1,18 @@
+.id {
+	width: 50px;
+}
+
+.name,
+.translit,
+.button {
+	width: 200px;
+	/* text-align: center; */
+}
+
+.type {
+	width: 150px;
+}
+
+.description {
+	width: 400px;
+}
