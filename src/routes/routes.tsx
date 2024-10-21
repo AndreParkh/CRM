@@ -7,9 +7,10 @@ import { AdminPage } from '../Pages/AdminPage';
 export const RouteNavigation: FC = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<AdminPage />} />
-			{/* <Route path="/simple_login" element={<SimpleLogin />} /> */}
-			{/* <Route path="/main_page" element={<MainPage />} /> */}
+			<Route path="/" element={<SimpleLogin />} />
+			<Route path="/simple_login" element={<SimpleLogin />} />
+			<Route path="/main_page" element={<MainPage />} />
+			<Route path="/admin_page" element={<AdminPage />} />
 		</Routes>
 	);
 };

@@ -7,8 +7,11 @@ import { AdminItem } from '../components/AdminItem/AdminItem'
 import styles from './AdminPage.module.css'
 import { adminItemOptions } from '../components/AdminItem/AdminItemOptions'
 
-
 export const AdminPage = (): JSX.Element => {
+
+	if (!localStorage.getItem('O-auth-token')) {
+		window.location.href = "/";
+	}
 
 	const [adminItems, setAdminItems] = useState<IAdminItem[]>([])
 
@@ -25,22 +28,29 @@ export const AdminPage = (): JSX.Element => {
 	useEffect(() => {
 		API.adminField.get()
 			.then(data => setAdminItems(data.sort((x: IAdminItem, y: IAdminItem) => x.id - y.id)))
+			.catch(error => console.error(error))
 	}, []);
 
 
 	const handleCreate = (data: ICreateAdminItem) => {
 		const response = API.adminField.create(data)
-		response.then(data => setAdminItems([...adminItems, data]))
+		response
+			.then(data => setAdminItems([...adminItems, data]))
+			.catch(error => console.error(error))
 	}
 
 	const handleUpdate = (id: number, data: IUpdateAdminItem) => {
 		const response = API.adminField.update({ ...data, id })
-		response.then(data => setAdminItems(adminItems.map(item => item.id === id ? { ...item, ...data } : item)))
+		response
+			.then(data => setAdminItems(adminItems.map(item => item.id === id ? { ...item, ...data } : item)))
+			.catch(error => console.error(error))
 	}
 
 	const handleDelete = (id: number) => {
 		const response = API.adminField.delete(id)
-		response.then(() => setAdminItems(adminItems.filter(item => item.id !== id)))
+		response
+			.then(() => setAdminItems(adminItems.filter(item => item.id !== id)))
+			.catch(error => console.error(error))
 	}
 
 	return <>
